@@ -22,20 +22,37 @@ window.onload = function () {
 
   const $result = document.querySelector("#result");
   const $bonus = document.querySelector("#bonus");
+  let $ball = "";
 
   for (let i = 0; i < length; i++) {
     setTimeout(() => {
       if (i < length - 1) {
-        const $ball = document.createElement("div");
+        $ball = document.createElement("div");
         $ball.className = "ball";
         $ball.textContent = winBalls[i];
         $result.appendChild($ball);
+        colouring();
       } else {
-        const $ball = document.createElement("div");
+        $ball = document.createElement("div");
         $ball.className = "ball";
         $ball.textContent = bonus;
         $bonus.appendChild($ball);
+        colouring();
       }
     }, 1000 * (i + 1));
   }
+
+  const colouring = () => {
+    if ($ball.textContent < 10) {
+      $ball.style.backgroundColor = "red";
+    } else if ($ball.textContent < 20) {
+      $ball.style.backgroundColor = "orange";
+    } else if ($ball.textContent < 30) {
+      $ball.style.backgroundColor = "yellow";
+    } else if ($ball.textContent < 40) {
+      $ball.style.backgroundColor = "blue";
+    } else {
+      $ball.style.backgroundColor = "green";
+    }
+  };
 };
